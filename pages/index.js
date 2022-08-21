@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import {formatearFecha} from '../helpers/index'
+import ListadoEntradas from '../components/ListadoEntradas'
 
 export default function Home({entradas}) {
 
@@ -8,24 +8,9 @@ export default function Home({entradas}) {
       <main>
         <table>
           <tbody>
-            {
-              entradas.map((entrada) => (
-                <tr key={entrada.id}>
-                  <td>
-                    <div className='bg-primary text-center'>
-                      <hr />
-                      <h3 className='text-light'>{entrada.titulo}</h3>
-                      <p className='text-light'>{formatearFecha(entrada.published_at)}</p>
-                      <hr />
-                      <p className='text-primary'>{entrada.descripcion}</p>
-                      <hr />
-                      <button className='bg-dark text-primary w-100'>Leer Mas</button>
-                      <hr />
-                    </div>
-                  </td>
-                </tr>
-              ))
-            }
+            <ListadoEntradas 
+              entradas={entradas}
+            />
           </tbody>     
         </table>
       </main>
@@ -33,14 +18,16 @@ export default function Home({entradas}) {
   )
 }
 
-export async function getServerSideProps() {
-  const url = `${process.env.API_URL}/blogs`
+export async function getStaticProps() {
+
+  const url = `${process.env.API_URL}/blogs/`
   const respuesta = await fetch(url)
   const entradas = await respuesta.json()
 
   return {
-    props: {
-      entradas
-    }
-}
+      props: {
+          entradas
+      }
+  }
+
 }

@@ -21,3 +21,23 @@
 .w-100 {
     width: 100px;
 }
+
+.none-decoration {
+    text-decoration: none;
+}
+
+.p-link {
+    padding: 3.5px 6.25px;
+}
+
+.b-link {
+    border: 2px solid black;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.m-right {
+    margin-right: 5px;
+}
